@@ -1,6 +1,6 @@
 # Fitness Counter
 
-This is a Fitness Counter developed for start2impact project
+This is a Fitness Counter developed for start2impact project.
 
 ## About the project
 
