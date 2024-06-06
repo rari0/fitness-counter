@@ -19,4 +19,4 @@ The +/- buttons and the display of the counter value must be built using DOM man
 
 ## Link
 
-Counter Link
+<a href="https://rari-fitness-counter.netlify.app">Fitness Counter Link.</a>
