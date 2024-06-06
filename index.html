@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcolo Fabbisogno Calorico</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div id="title-container" class="glass-background">
+    <h1>Daily Calories</h1>
+  </div>
+  <div id="app" class="glass-background">
+    <div id="form-wrapper">
+      <div id="question-container"></div>
+        <div id="controls">
+          <button id="prev-btn" onclick="prevQuestion()"><</button>
+          <button id="next-btn" onclick="nextQuestion()">></button>
+        </div>
+      <div id="result-container"></div>
+        <button id="reset-btn" onclick="resetTest()">Reset</button>
+      </div>
+    </div>
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>
