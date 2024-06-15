@@ -49,39 +49,51 @@ function showQuestion(step) {
       questionContainer.appendChild(button);
     });
   } else if (question.counter) {
-      const counterContainer = document.createElement('div');
-      counterContainer.className = 'counter-controls';
+    const counterContainer = document.createElement('div');
+    counterContainer.className = 'counter-controls';
 
-      const minusButton = document.createElement('button');
-      minusButton.textContent = '-';
-      attachCounterHandlers(minusButton, question.id, -1);
-      counterContainer.appendChild(minusButton);
+    const minusButton = document.createElement('button');
+    minusButton.textContent = '-';
+    attachCounterHandlers(minusButton, question.id, -1);
+    counterContainer.appendChild(minusButton);
 
-      const counterDisplay = document.createElement('span');
-      counterDisplay.id = `${question.id}-counter`;
-      counterDisplay.textContent = userData[question.id];
-      counterContainer.appendChild(counterDisplay);
+    const counterDisplay = document.createElement('span');
+    counterDisplay.id = `${question.id}-counter`;
+    counterDisplay.textContent = userData[question.id];
+    counterContainer.appendChild(counterDisplay);
 
-      const plusButton = document.createElement('button');
-      plusButton.textContent = '+';
-      attachCounterHandlers(plusButton, question.id, 1);
-      counterContainer.appendChild(plusButton);
+    const plusButton = document.createElement('button');
+    plusButton.textContent = '+';
+    attachCounterHandlers(plusButton, question.id, 1);
+    counterContainer.appendChild(plusButton);
 
-      questionContainer.appendChild(counterContainer);
+    questionContainer.appendChild(counterContainer);
   }
+
+  document.getElementById('prev-btn').style.display = step === 0 ? 'none' : 'inline-block';
 }
 
 function attachCounterHandlers(button, id, value) {
+  let timeout;
   let interval;
 
   const startCounting = () => {
-    updateCounter(id, value);
-    interval = setInterval(() => updateCounter(id, value), 200);
+    timeout = setTimeout(() => {
+      interval = setInterval(() => updateCounter(id, value), 100);
+    }, 500); // Ritardo di 500ms prima di iniziare il conteggio continuo
   };
 
-  const stopCounting = () => clearInterval(interval);
+  const stopCounting = () => {
+    clearTimeout(timeout);
+    clearInterval(interval);
+  };
 
-  button.onclick = () => updateCounter(id, value);
+  button.onclick = () => {
+    clearTimeout(timeout);
+    clearInterval(interval);
+    updateCounter(id, value);
+  };
+
   button.onmousedown = startCounting;
   button.onmouseup = stopCounting;
   button.onmouseleave = stopCounting;
